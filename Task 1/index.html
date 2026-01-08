@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeevan R P | AI Engineer & Web Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- VARIABLES --- */
+        :root {
+            --bg-dark: #272727;
+            --text-grey: #b3b3b3;
+            --neon-orange: #FF652F;
+            --neon-yellow: #FFE400;
+            --neon-green: #14A76C;
+            --glass-bg: rgba(39, 39, 39, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        /* --- BASE STYLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--bg-dark);
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Ambient Background Glows */
+        .glow-orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            opacity: 0.4;
+            animation: pulseGlow 10s infinite alternate;
+        }
+        .orb-1 { top: -10%; left: -10%; width: 40vw; height: 40vw; background: var(--neon-orange); }
+        .orb-2 { bottom: -10%; right: -10%; width: 40vw; height: 40vw; background: var(--neon-green); animation-delay: 2s; }
+        .orb-3 { top: 40%; left: 30%; width: 20vw; height: 20vw; background: var(--neon-yellow); opacity: 0.15; animation-delay: 4s; }
+
+        @keyframes pulseGlow {
+            0% { transform: scale(1); opacity: 0.3; }
+            100% { transform: scale(1.1); opacity: 0.5; }
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- LAYOUT --- */
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #fff;
+        }
+
+        /* Underline effect for titles */
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--neon-yellow);
+            margin: 10px auto 0;
+            box-shadow: 0 0 10px var(--neon-yellow);
+            transition: width 0.3s ease;
+        }
+        .section-title:hover::after { width: 100%; }
+
+        /* --- GLASS CARDS & HOVER EFFECTS --- */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: 0.4s;
+            z-index: -1;
+        }
+
+        /* Specific Hover Glows based on classes */
+        .hover-orange:hover { border-color: var(--neon-orange); box-shadow: 0 10px 40px -10px rgba(255, 101, 47, 0.3); transform: translateY(-10px); }
+        .hover-green:hover { border-color: var(--neon-green); box-shadow: 0 10px 40px -10px rgba(20, 167, 108, 0.3); transform: translateY(-10px); }
+        .hover-yellow:hover { border-color: var(--neon-yellow); box-shadow: 0 10px 40px -10px rgba(255, 228, 0, 0.3); transform: translateY(-10px); }
+
+        .glass-card:hover::before { opacity: 1; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 1.5rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(39, 39, 39, 0.85);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        .logo span { color: var(--neon-orange); text-shadow: 0 0 10px var(--neon-orange); }
+
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { font-weight: 500; font-size: 0.95rem; position: relative; }
+        
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0; width: 0; height: 2px;
+            background: var(--neon-green);
+            transition: 0.3s;
+            box-shadow: 0 0 5px var(--neon-green);
+        }
+        .nav-links a:hover { color: var(--neon-green); }
+        .nav-links a:hover::before { width: 100%; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+        
+        .hero-content { max-width: 800px; }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+        
+        .hero h1 .highlight {
+            color: transparent;
+            -webkit-text-stroke: 2px var(--neon-orange);
+            position: relative;
+        }
+        .hero h1 .highlight::after {
+            content: 'Nothing';
+            position: absolute;
+            left: 0; top: 0;
+            color: var(--neon-orange);
+            opacity: 0;
+            transition: 0.5s;
+            filter: drop-shadow(0 0 10px var(--neon-orange));
+        }
+        .hero h1:hover .highlight::after { opacity: 1; }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-grey);
+            max-width: 600px;
+            margin-bottom: 2.5rem;
+        }
+
+        .btn-neon {
+            padding: 15px 40px;
+            border: 2px solid var(--neon-green);
+            color: var(--neon-green);
+            font-weight: 600;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            z-index: 1;
+        }
+        
+        .btn-neon::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 0%; height: 100%;
+            background: var(--neon-green);
+            z-index: -1;
+            transition: 0.3s ease;
+        }
+        
+        .btn-neon:hover { color: #000; box-shadow: 0 0 30px rgba(20, 167, 108, 0.4); }
+        .btn-neon:hover::after { width: 100%; }
+
+        /* --- ABOUT SUMMARY --- */
+        .about { padding: 4rem 0; }
+        .summary-text {
+            font-size: 1.1rem;
+            color: #ddd;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        .summary-highlight { color: var(--neon-yellow); font-weight: 600; }
+
+        /* --- EXPERIENCE --- */
+        .experience { padding: 5rem 0; }
+        .timeline { display: grid; gap: 2rem; }
+        
+        .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+        .exp-role { font-size: 1.4rem; font-weight: 600; color: #fff; }
+        .exp-company { font-size: 1.1rem; color: var(--neon-orange); margin-top: 5px; }
+        .exp-date { font-size: 0.9rem; color: var(--text-grey); border: 1px solid var(--glass-border); padding: 5px 10px; border-radius: 20px; }
+        .exp-details { color: #ccc; font-size: 0.95rem; }
+
+        /* --- PROJECTS --- */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            padding-bottom: 5rem;
+        }
+
+        .project-card h3 { font-size: 1.5rem; margin-bottom: 1rem; color: #fff; }
+        
+        .project-links {
+            margin-top: 1.5rem;
+            display: flex;
+            gap: 1rem;
+        }
+        .project-links a { font-size: 1.2rem; color: var(--text-grey); }
+        .project-links a:hover { color: #fff; }
+
+        /* --- SKILLS TAGS --- */
+        .tech-container { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1rem; }
+        .tech-tag {
+            font-size: 0.8rem;
+            padding: 6px 14px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50px;
+            color: var(--text-grey);
+            transition: 0.3s;
+        }
+        
+        /* Tag Hover Effect */
+        .tech-tag:hover {
+            background: transparent;
+            color: #fff;
+            transform: scale(1.1);
+            border-color: var(--neon-yellow);
+            box-shadow: 0 0 10px var(--neon-yellow);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            border-top: 1px solid var(--glass-border);
+            padding: 3rem 0;
+            text-align: center;
+            background: rgba(0,0,0,0.2);
+        }
+        .social-icons { margin-bottom: 1.5rem; }
+        .social-icons a {
+            font-size: 1.8rem;
+            margin: 0 15px;
+            color: var(--text-grey);
+            display: inline-block;
+        }
+        .social-icons a:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+        .fa-linkedin:hover { color: #0077b5; text-shadow: 0 0 15px rgba(0,119,181,0.5); }
+        .fa-github:hover { color: #fff; text-shadow: 0 0 15px rgba(255,255,255,0.5); }
+        .fa-envelope:hover { color: var(--neon-orange); text-shadow: 0 0 15px var(--neon-orange); }
+
+        /* --- ANIMATIONS --- */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+    <div class="glow-orb orb-3"></div>
+
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">JEEVAN <span>R P</span></div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero container">
+        <div class="hero-content">
+            <p class="fade-in-up" style="color: var(--neon-green); font-weight: 600;">Welcome to my portfolio</p>
+            <h1 class="fade-in-up delay-1">A Technical Student with <span class="highlight">Nothing</span><br> Special.</h1>
+            <p class="fade-in-up delay-2">Machine Learning | Computer Vision | Web Development</p>
+            <a href="#contact" class="btn-neon fade-in-up delay-3">Let's Connect</a>
+        </div>
+    </section>
+
+    <section id="about" class="about container">
+        <div class="glass-card hover-yellow fade-in-up">
+            <h2 class="section-title" style="font-size: 2rem; margin-bottom: 1.5rem;">About Me</h2>
+            <p class="summary-text">
+                I am a technology enthusiast with a strong curiosity for how <span class="summary-highlight">AI and data shape modern solutions</span>. 
+                From building AI models and web applications to exploring blockchain, I combine creativity and analytical thinking to turn ideas into working prototypes. 
+                Currently pursuing my B.Tech in Computer Science, I specialize in <span class="summary-highlight">Python, Computer Vision, and Digital Marketing</span>.
+            </p>
+        </div>
+    </section>
+
+    <section id="experience" class="experience container">
+        <h2 class="section-title">Experience</h2>
+        <div class="timeline">
+
+            <div class="glass-card hover-green fade-in-up">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-role">Machine Learning Intern</div>
+                        <div class="exp-company">National Institute of Technology (NIT), Puducherry</div>
+                    </div>
+                    <span class="exp-date">Dec 2025 – Jan 2026</span>
+                </div>
+                <p class="exp-details">
+                    Collaborated on advanced Machine Learning research projects. Applied deep learning algorithms to solve complex data challenges and contributed to model optimization techniques within an academic research environment.
+                </p>
+                <div class="tech-container">
+                    <span class="tech-tag">Research</span>
+                    <span class="tech-tag">Deep Learning</span>
+                    <span class="tech-tag">Python</span>
+                </div>
+            </div>
+
+            <div class="glass-card hover-orange fade-in-up delay-1">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-role">AI & Data Analytics Intern</div>
+                        <div class="exp-company">Edunet Foundation (IBM Skillsbuild)</div>
+                    </div>
+                    <span class="exp-date">Jun 2025 – Jul 2025</span>
+                </div>
+                <p class="exp-details">
+                    Developed an E-waste Classification system using transfer learning (EfficientNetV2B0) to identify electronic waste categories from images. 
+                    Worked on Employee Salary Prediction applying regression algorithms.
+                </p>
+                <div class="tech-container">
+                    <span class="tech-tag">EfficientNet</span>
+                    <span class="tech-tag">IBM Cloud</span>
+                    <span class="tech-tag">Regression</span>
+                </div>
+            </div>
+
+            <div class="glass-card hover-yellow fade-in-up delay-2">
+                <div class="exp-header">
+                    <div>
+                        <div class="exp-role">Digital Marketing & SEO Intern</div>
+                        <div class="exp-company">Tamizhan Skills</div>
+                    </div>
+                    <span class="exp-date">June 2025 – July 2025</span>
+                </div>
+                <p class="exp-details">
+                    Executed end-to-end digital marketing initiatives including SEO optimization via Google Search Console and YouTube content strategy.
+                </p>
+                <div class="tech-container">
+                    <span class="tech-tag">SEO</span>
+                    <span class="tech-tag">Google Search Console</span>
+                    <span class="tech-tag">Content Strategy</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="projects" class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+
+            <div class="glass-card hover-orange fade-in-up">
+                <h3>Drive Detect</h3>
+                <p style="color: #ccc; font-size: 0.9rem;">
+                    A real-time traffic monitoring solution. Uses YOLOv5, PaddleOCR, and OpenCV to detect helmet violations and extract vehicle number plates from video streams.
+                </p>
+                <div class="tech-container">
+                    <span class="tech-tag">YOLOv5</span>
+                    <span class="tech-tag">PaddleOCR</span>
+                    <span class="tech-tag">OpenCV</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/jeevan-rp" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+
+            <div class="glass-card hover-green fade-in-up delay-1">
+                <h3>Sort AI</h3>
+                <p style="color: #ccc; font-size: 0.9rem;">
+                    Automated E-Waste Classifier. Developed using EfficientNetV2B0 with custom preprocessing to classify electronic waste into 10 categories, improving recycling efficiency.
+                </p>
+                <div class="tech-container">
+                    <span class="tech-tag">TensorFlow</span>
+                    <span class="tech-tag">Deep Learning</span>
+                    <span class="tech-tag">Jupyter</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/jeevan-rp" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+
+            <div class="glass-card hover-yellow fade-in-up delay-2">
+                <h3>Employee Salary Prediction</h3>
+                <p style="color: #ccc; font-size: 0.9rem;">
+                    Built a machine learning model to predict employee salaries (>50K/year) and deployed an interactive Streamlit app for batch predictions.
+                </p>
+                <div class="tech-container">
+                    <span class="tech-tag">Scikit-learn</span>
+                    <span class="tech-tag">Streamlit</span>
+                    <span class="tech-tag">Joblib</span>
+                </div>
+                <div class="project-links">
+                    <a href="https://github.com/jeevan-rp" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <h2 style="color: #fff; margin-bottom: 1rem;">Let's Work Together</h2>
+            <p style="color: var(--text-grey); margin-bottom: 2rem;">Tiruvannamalai, TN | +91 8072406233</p>
+            
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/jeevan-rp" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/jeevan-rp" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="mailto:jeevanrp@zohomail.in" title="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+            
+            <p style="font-size: 0.8rem; color: #666;">© 2026 Jeevan R P. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in-up').forEach((el) => {
+            el.style.opacity = 0; // Hide initially
+            el.style.animationPlayState = 'paused';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

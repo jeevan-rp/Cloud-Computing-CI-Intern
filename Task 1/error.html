@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | Lost in Space</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #272727;
+            --neon-orange: #FF652F;
+            --neon-green: #14A76C;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--bg-dark);
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 10rem;
+            margin: 0;
+            position: relative;
+            color: var(--bg-dark);
+            text-shadow: -2px 0 var(--neon-orange), 2px 0 var(--neon-green);
+        }
+
+        /* Glitch Animation */
+        h1::before, h1::after {
+            content: '404';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--bg-dark);
+        }
+
+        h1::before {
+            color: var(--neon-orange);
+            animation: glitch-1 2s infinite linear alternate-reverse;
+            clip-path: inset(0 0 50% 0);
+            z-index: -1;
+        }
+
+        h1::after {
+            color: var(--neon-green);
+            animation: glitch-2 3s infinite linear alternate-reverse;
+            clip-path: inset(50% 0 0 0);
+            z-index: -1;
+        }
+
+        @keyframes glitch-1 {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        @keyframes glitch-2 {
+            0% { transform: translate(0); }
+            20% { transform: translate(2px, -2px); }
+            40% { transform: translate(2px, 2px); }
+            60% { transform: translate(-2px, -2px); }
+            80% { transform: translate(-2px, 2px); }
+            100% { transform: translate(0); }
+        }
+
+        p { font-size: 1.5rem; color: #aaa; margin-bottom: 2rem; }
+
+        .btn {
+            padding: 12px 35px;
+            background: transparent;
+            border: 2px solid var(--neon-orange);
+            color: var(--neon-orange);
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            background: var(--neon-orange);
+            color: #fff;
+            box-shadow: 0 0 30px var(--neon-orange);
+        }
+    </style>
+</head>
+<body>
+    <h1>404</h1>
+    <p>System Failure. Page not found.</p>
+    <a href="index.html" class="btn">Reboot</a>
+</body>
+</html>
